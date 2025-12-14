@@ -1,0 +1,152 @@
+/* login and registration forms */
+.form-container {
+    width: 100%;
+    max-width: 500px;
+    margin: 2em auto;
+    position: relative;
+    padding: 0 1em;
+  }
+  
+  .login-container {
+    padding: 1em;
+  }
+  
+  .form-container form {
+    border: 2px solid aliceblue;
+    background-color: aliceblue;
+    padding: 1.5em;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .form-container input[type=text], 
+  .form-container input[type=password], 
+  .form-container input[type=email] {
+    width: 100%;
+    padding: .75em;
+    margin: .5em 0;
+    display: inline-block;
+    border: 1px solid #c1c1c1;
+    box-sizing: border-box;
+    border-radius: 4px;
+    font-size: 16px; /* Prevent zoom on iOS */
+  }
+  
+  .form-container form button {
+    background-color: orange;
+    padding: .75em 1em;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    border-radius: 4px;
+    font-size: 16px;
+    font-weight: 600;
+    min-height: 44px;
+    transition: all 0.3s ease;
+  }
+  
+  .form-container form button:hover {
+    opacity: 0.9;
+    transform: translateY(-1px);
+  }
+  
+  .form-container .cancelbtn {
+    width: auto;
+    padding: .5em 1em;
+    background-color: #f44339;
+    margin-top: 0.5em;
+  }
+  
+  .form-container .img {
+    text-align: center;
+    margin-top: 1.5em;
+  }
+  
+  .form-container img.avatar {
+    border-radius: 50%;
+    max-width: 100px;
+  }
+  
+  .form-container span.password {
+    float: right;
+    padding-top: 1em;
+  }
+  
+  
+  .form-container .close {
+    position: absolute;
+    right: 1em;
+    top: 0.5em;
+    color: #000;
+    font-size: 2rem;
+    font-weight: bold;
+    cursor: pointer;
+    z-index: 10;
+  }
+  
+  .form-container .close:hover,
+  .form-container .close:focus {
+    color: #f44339;
+    cursor: pointer;
+  }
+  
+  /* zoom animation */
+  .animate {
+    animation: animatezoom 0.6s;
+  }
+  
+  @keyframes animatezoom {
+    from { transform: scale(0);}
+    to {
+        transform: scale(1);
+    }
+  }
+  
+  
+  @media screen and (max-width: 768px) {
+    .form-container {
+        width: 100%;
+        max-width: 100%;
+        margin: 1em auto;
+        padding: 0 0.5em;
+    }
+    
+    .form-container form {
+        padding: 1em;
+    }
+    
+    .form-container span.password {
+        display: block;
+        float: none;
+        text-align: right;
+        padding-top: 0.5em;
+    }
+  
+    .form-container .cancelbtn {
+        width: 100%;
+        margin-top: 0.5em;
+    }
+  }
+  
+  @media screen and (max-width: 480px) {
+    .form-container {
+        margin: 0.5em auto;
+        padding: 0 0.25em;
+    }
+    
+    .form-container form {
+        padding: 0.75em;
+    }
+    
+    .form-container input[type=text], 
+    .form-container input[type=password], 
+    .form-container input[type=email] {
+        padding: 0.6em;
+        font-size: 16px;
+    }
+    
+    .form-container form button {
+        padding: 0.6em 1em;
+        font-size: 16px;
+    }
+  }

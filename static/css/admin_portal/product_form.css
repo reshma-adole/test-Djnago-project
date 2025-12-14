@@ -1,0 +1,158 @@
+.add-product-headings {
+    text-align: center;
+    background-color: rgb(0, 0, 0);
+    color: rgb(255, 255, 255);
+    padding: .5em 0;
+    margin-bottom: .5em;
+}
+
+.product-inventory-headings{
+    text-align: center;
+    background-color: rgb(0, 0, 0);
+    color: rgb(255, 255, 255);
+    padding: .5em 0;
+    margin-bottom: .5em;
+  }
+
+
+.product_form {
+    background-color: rgb(12, 85, 17);
+    color: white;
+    padding: 1em;
+    border-radius: 8px;
+    margin: 1em 0;
+}
+
+.product_form form {
+    margin: 1em;
+}
+
+.product_form form input,
+.product_form form select,
+.product_form form textarea,
+.product_form form label {
+    padding: .75em;
+    display: block;
+    margin-bottom: 0.5em;
+    font-size: 16px; /* Prevent zoom on iOS */
+}
+
+.product_form form input,
+.product_form form select,
+.product_form form textarea {
+    width: 100%;
+    max-width: 600px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 4px;
+    background-color: rgba(255, 255, 255, 0.1);
+    color: white;
+    box-sizing: border-box;
+}
+
+.product_form form input::placeholder {
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.product_form form input[type="file"] {
+    padding: 0.5em;
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+.product_form form input[type="submit"],
+.product_form form button[type="submit"] {
+    background-color: orange;
+    color: black;
+    border: none;
+    padding: 0.75em 1.5em;
+    cursor: pointer;
+    font-weight: 600;
+    min-height: 44px;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+    margin-top: 1em;
+}
+
+.product_form form input[type="submit"]:hover,
+.product_form form button[type="submit"]:hover {
+    opacity: 0.9;
+    transform: translateY(-1px);
+}
+
+.product_form form label {
+    font-weight: 600;
+    margin-top: 0.5em;
+    padding-bottom: 0.25em;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+    .product_form {
+        padding: 0.75em;
+    }
+    
+    .product_form form {
+        margin: 0.75em;
+    }
+    
+    .product_form form input,
+    .product_form form select,
+    .product_form form textarea {
+        max-width: 100%;
+    }
+}
+
+@media (max-width: 768px) {
+    .product_form {
+        padding: 0.5em;
+        margin: 0.5em;
+    }
+    
+    .product_form form {
+        margin: 0.5em;
+    }
+    
+    .add-product-headings,
+    .product-inventory-headings {
+        padding: 0.75em 0;
+        font-size: 0.9rem;
+    }
+    
+    .product_form form input,
+    .product_form form select,
+    .product_form form textarea,
+    .product_form form label {
+        padding: 0.6em;
+        font-size: 16px;
+    }
+}
+
+@media (max-width: 480px) {
+    .product_form {
+        padding: 0.5em;
+        margin: 0.25em;
+    }
+    
+    .product_form form {
+        margin: 0.5em;
+    }
+    
+    .add-product-headings,
+    .product-inventory-headings {
+        padding: 0.5em 0;
+        font-size: 0.85rem;
+    }
+    
+    .product_form form input,
+    .product_form form select,
+    .product_form form textarea,
+    .product_form form label {
+        padding: 0.5em;
+        font-size: 16px;
+    }
+    
+    .product_form form input[type="submit"],
+    .product_form form button[type="submit"] {
+        width: 100%;
+        padding: 0.75em 1em;
+    }
+}

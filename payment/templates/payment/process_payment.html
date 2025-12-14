@@ -1,0 +1,55 @@
+{% extends 'main/base.html' %}
+
+{% block title %}QR Payment{% endblock title %}
+
+{% load static %}
+
+{% block content %}
+<div class="container">
+  <h3>Scan QR and Upload Proof</h3>
+  <p>Scan the QR code using your phone's bank/UPI app and complete the payment. After paying, either take a screenshot or use your camera to capture the payment success screen and upload it below. Optionally, enter the transaction/UTR ID.</p>
+ <div class="qr-preview">
+    <img src="{% static 'images/payment_qr.jpeg' %}" alt="Scan QR to pay" style="max-width:320px;">
+    <p>Amount: ₹ {{ amount }}</p>
+  </div>
+
+  <form method="post" action="{% url 'payment_execute' %}" enctype="multipart/form-data">
+    {% csrf_token %}
+    <input type="hidden" name="payment_method" value="qr">
+
+      <div class="form-group">
+    <label for="transaction_id">Transaction / UTR ID</label>
+    <input type="text" name="transaction_id" id="transaction_id" class="form-control" required>
+      </div>
+
+
+    <div class="form-group">
+      <label for="payment_proof">Upload screenshot or take photo</label>
+      <input type="file" name="payment_proof" id="payment_proof" accept="image/*"  class="form-control">
+      <small class="form-text text-muted">You can use camera on mobile (permission required) or upload from gallery.</small>
+      <div id="preview" style="margin-top:10px;"></div>
+    </div>
+
+    <button type="submit" class="btn btn-success mt-2">Confirm Payment / Paid</button>
+  </form>
+</div>
+
+<script>
+  // simple preview for uploaded image
+  const input = document.getElementById('payment_proof');
+  const preview = document.getElementById('preview');
+  if (input) {
+    input.addEventListener('change', function(e) {
+      preview.innerHTML = '';
+      const file = this.files[0];
+      if (file) {
+        const img = document.createElement('img');
+        img.style.maxWidth = '240px';
+        img.style.marginTop = '8px';
+        img.src = URL.createObjectURL(file);
+        preview.appendChild(img);
+      }
+    });
+  }
+</script>
+{% endblock content %}

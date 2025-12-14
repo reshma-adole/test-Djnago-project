@@ -1,0 +1,218 @@
+.checkout-container {
+    display: flex;
+    width: 100%;
+    margin: 0 auto;
+    justify-content: space-between;
+    background-color: aliceblue;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+}
+
+.customer-information, .order-summary {
+    flex: 1;
+    min-width: 300px;
+    box-shadow: 0 4px 2px 0 rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.2);
+    padding: 1.5em;
+    border-radius: 8px;
+    background-color: white;
+}
+
+.order-summary {
+    order: 1;
+}
+
+.customer-information {
+    order: 2;
+}
+
+.customer-information h1,
+.order-summary h1 {
+    font-size: 1.5rem;
+    margin-bottom: 1em;
+    color: #333;
+}
+
+.customer-information input,
+.customer-information select,
+.customer-information textarea {
+    width: 100%;
+    padding: .75em;
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    font-size: 16px; /* Prevent zoom on iOS */
+}
+
+.customer-information input[type='submit'] {
+    width: 100%;
+    background-color: orange;
+    outline: none;
+    border: none;
+    padding: .75em 1em;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 600;
+    min-height: 44px;
+    min-width: 44px;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
+}
+
+.customer-information input[type='submit']:hover {
+    opacity: 0.9;
+    transform: translateY(-1px);
+}
+
+.back-to-cart {
+    padding-bottom: .5em;
+    margin-bottom: 1em;
+}
+
+.back-to-cart button {
+    padding: .5em .8em;
+    min-height: 44px;
+    min-width: 44px;
+    font-size: 16px;
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
+}
+
+.cart-elements-container {
+    margin-top: 1em;
+}
+
+.cart-elements-container .cart-element {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5em;
+    padding: 0.5em 0;
+    border-bottom: 1px solid #eee;
+}
+
+.cart-elements-container .cart-element:last-child {
+    border-bottom: none;
+}
+
+.shipping-information {
+    margin-top: 2em;
+}
+
+.shipping-information h1 {
+    font-size: 1.3rem;
+    margin-bottom: 1em;
+}
+
+@media (max-width: 1024px) {
+    .checkout-container {
+        flex-direction: column;
+    }
+    
+    .customer-information, .order-summary {
+        width: 100%;
+        min-width: 100%;
+    }
+    
+    .order-summary {
+        order: 1;
+    }
+    
+    .customer-information {
+        order: 2;
+    }
+}
+
+@media (max-width: 768px) {
+    .checkout-container {
+        width: 100%;
+        display: block;
+        padding: 0.5em;
+    }
+
+    .customer-information, .order-summary {
+        width: 100%;
+        padding: 1em;
+        margin-bottom: 1em;
+    }
+    
+    .customer-information h1,
+    .order-summary h1 {
+        font-size: 1.3rem;
+    }
+
+    .shipping-information {
+        margin-bottom: 2em;
+    }
+    
+    .shipping-information h1 {
+        font-size: 1.2rem;
+    }
+    
+    .back-to-cart button {
+        width: 100%;
+        padding: 0.6em 1em;
+    }
+}
+
+@media (max-width: 480px) {
+    .checkout-container {
+        padding: 0.25em;
+    }
+    
+    .customer-information, .order-summary {
+        padding: 0.75em;
+    }
+    
+    .customer-information input,
+    .customer-information select,
+    .customer-information textarea {
+        padding: 0.6em;
+        font-size: 16px;
+    }
+    
+    .customer-information input[type='submit'],
+    .customer-information button[type='submit'] {
+        padding: 0.6em 1em;
+        font-size: 16px;
+        width: 100%;
+    }
+    
+    .cart-elements-container .cart-element {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    /* Payment form specific styles */
+    .customer-information label {
+        display: block;
+        margin-bottom: 0.5em;
+        font-weight: 500;
+        font-size: 16px;
+    }
+    
+    .customer-information input[type='radio'] {
+        width: auto;
+        margin-right: 0.5em;
+        margin-top: 0;
+        margin-bottom: 0;
+    }
+    
+    .customer-information input[type='radio'] + label {
+        display: inline-block;
+        margin-left: 0.25em;
+        font-weight: normal;
+    }
+    
+    .shipping-information {
+        margin-top: 1.5em;
+    }
+    
+    .user-information p {
+        font-size: 0.9rem;
+        line-height: 1.6;
+        word-break: break-word;
+    }
+}
