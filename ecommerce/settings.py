@@ -199,25 +199,50 @@ if DEBUG:
 
 else:
     # Production: S3
-    INSTALLED_APPS += ['storages']
-    AWS_ACCESS_KEY_ID = os.getenv('AWS_ACCESS_KEY_ID')
-    AWS_SECRET_ACCESS_KEY = os.getenv('AWS_SECRET_ACCESS_KEY')
-    AWS_STORAGE_BUCKET_NAME = 'ecom-bucket'
-    AWS_S3_REGION_NAME = 'ap-south-1'
-    AWS_S3_CUSTOM_DOMAIN = f'{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com'
-    # AWS_DEFAULT_ACL = 'public-read'
+    # INSTALLED_APPS += ['storages']
+    # AWS_ACCESS_KEY_ID = os.getenv('AWS_ACCESS_KEY_ID')
+    # AWS_SECRET_ACCESS_KEY = os.getenv('AWS_SECRET_ACCESS_KEY')
+    # AWS_STORAGE_BUCKET_NAME = 'ecom-bucket'
+    # AWS_S3_REGION_NAME = 'ap-south-1'
+    # AWS_S3_CUSTOM_DOMAIN = f'{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com'
+    # # AWS_DEFAULT_ACL = 'public-read'
+    # AWS_QUERYSTRING_AUTH = False
+
+    # # Static & Media
+    # STATICFILES_STORAGE = "ecommerce.storage_backends.StaticStorage"
+    # DEFAULT_FILE_STORAGE = "ecommerce.storage_backends.MediaStorage"
+
+    # STATIC_URL = f"https://{AWS_S3_CUSTOM_DOMAIN}/static/"
+    # MEDIA_URL = f"https://{AWS_S3_CUSTOM_DOMAIN}/media/"
+    # # MEDIA_ROOT = "media/"
+
+    # STATICFILES_DIRS = [BASE_DIR / "static"]
+
+
+    # cloudfront setup
+    INSTALLED_APPS += ["storages"]
+
+
+    AWS_ACCESS_KEY_ID = os.getenv("AWS_ACCESS_KEY_ID")
+    AWS_SECRET_ACCESS_KEY = os.getenv("AWS_SECRET_ACCESS_KEY")
+
+    AWS_STORAGE_BUCKET_NAME = "ecom-bucket"
+    AWS_S3_REGION_NAME = "ap-south-1"
+
+    # IMPORTANT: CloudFront domain
+    AWS_S3_CUSTOM_DOMAIN = "d3lexs1pvo8g2o.cloudfront.net"
+
     AWS_QUERYSTRING_AUTH = False
 
-    # Static & Media
+    # Storage backends
     STATICFILES_STORAGE = "ecommerce.storage_backends.StaticStorage"
     DEFAULT_FILE_STORAGE = "ecommerce.storage_backends.MediaStorage"
 
+    # Static & Media URLs via CloudFront
     STATIC_URL = f"https://{AWS_S3_CUSTOM_DOMAIN}/static/"
     MEDIA_URL = f"https://{AWS_S3_CUSTOM_DOMAIN}/media/"
-    # MEDIA_ROOT = "media/"
 
     STATICFILES_DIRS = [BASE_DIR / "static"]
-
 
 
 
