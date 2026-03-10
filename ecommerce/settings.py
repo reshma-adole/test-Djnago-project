@@ -15,13 +15,56 @@ from pathlib import Path
 from dotenv import load_dotenv
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-import os
 
 
 import os
 import json
 import boto3
 from botocore.exceptions import ClientError
+
+load_dotenv()
+
+
+CSRF_TRUSTED_ORIGINS = [
+    "http://localhost:8000",
+    "http://127.0.0.1:8000",
+    "https://skyage.co.in",
+    "https://www.skyage.co.in"
+]
+
+# Load environment variables
+ENV_FILE = BASE_DIR / ".env"
+load_dotenv(dotenv_path=ENV_FILE)
+
+# SECURITY WARNING: keep the secret key used in production secret!
+# SECRET_KEY = os.getenv("SECRET_KEY")
+# SECRET_KEY = "ec!+!giaths(*jz$aa@3keriae^a73q!xpxt)!h+)e(e!f199w"
+
+
+
+# Quick-start development settings - unsuitable for production
+# See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
+
+
+
+SECRET_KEY = config.get("SECRET_KEY")
+
+
+# # SECURITY WARNING: don't run with debug turned on in production!
+# DEBUG = os.getenv("DEBUG", "False").lower() in ("true", "1", "yes")
+
+DEBUG = str(config.get("DEBUG", "False")).lower() in ("true", "1", "yes")
+
+ALLOWED_HOSTS = os.getenv("ALLOWED_HOSTS", "*").split(",")
+# ALLOWED_HOSTS = os.getenv("ALLOWED_HOSTS", "*").split(",")
+
+
+
+
+ALLOWED_HOSTS = [
+    "127.0.0.1",
+    "localhost"
+]
 
 # -----------------------------------------
 # Environment Detection
@@ -46,6 +89,7 @@ if ENVIRONMENT == "local":
     from dotenv import load_dotenv
     load_dotenv()
     config = os.environ
+    
 
 # -----------------------------------------
 # Staging / Production (AWS Secrets Manager)
@@ -80,35 +124,11 @@ else:
         )
 
 
-# Load environment variables
-# ENV_FILE = BASE_DIR / ".env"
-# load_dotenv(dotenv_path=ENV_FILE)
-
-
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
-
-# SECURITY WARNING: keep the secret key used in production secret!
-# SECRET_KEY = os.getenv("SECRET_KEY")
-
-# # SECURITY WARNING: don't run with debug turned on in production!
-# DEBUG = os.getenv("DEBUG", "False").lower() in ("true", "1", "yes")
-
-# ALLOWED_HOSTS = os.getenv("ALLOWED_HOSTS", "*").split(",")
-
-
-SECRET_KEY = config.get("SECRET_KEY")
-
-DEBUG = str(config.get("DEBUG", "False")).lower() in ("true", "1", "yes")
-
-#ALLOWED_HOSTS = os.getenv("ALLOWED_HOSTS", "*").split(",")
-ALLOWED_HOSTS = config.get("ALLOWED_HOSTS", "").split(",")
 
 
 
 
-CSRF_TRUSTED_ORIGINS =('https://skyage.co.in',
-    'https://www.skyage.co.in')
+
 
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
@@ -201,36 +221,27 @@ WSGI_APPLICATION = 'ecommerce.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
-if DEBUG:
-    # Local dev: SQLite
+if ENVIRONMENT == "local":
+
     DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.sqlite3',
-            'NAME': BASE_DIR / 'db.sqlite3',
+        "default": {
+            "ENGINE": "django.db.backends.sqlite3",
+            "NAME": BASE_DIR / "db.sqlite3",
         }
     }
+
 else:
-    # Production: PostgreSQL (RDS)
+
     DATABASES = {
-        'default': {
+        "default": {
             "ENGINE": "django.db.backends.postgresql",
             "NAME": config["DB_NAME"],
             "USER": config["DB_USER"],
             "PASSWORD": config["DB_PASSWORD"],
             "HOST": config["DB_HOST"],
-            "PORT": config["DB_PORT"],
-
-            # 'ENGINE': 'django.db.backends.postgresql',
-            # 'NAME': os.getenv('DB_NAME'),
-            # 'USER': os.getenv('DB_USER'),
-            # 'PASSWORD': os.getenv('DB_PASSWORD'),
-            # 'HOST': os.getenv('DB_HOST'),
-            # 'PORT': os.getenv('DB_PORT', '5432'),
-
-
+            "PORT": config.get("DB_PORT", "5432"),
         }
     }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
@@ -312,7 +323,7 @@ else:
     AWS_S3_REGION_NAME = config["AWS_REGION"]
 
 
-    # AWS_STORAGE_BUCKET_NAME = "ecom-bucket"
+    # AWS_STORAGE_BUCKET_NAME = "skyage-staging-bucket"
     # AWS_S3_REGION_NAME = "ap-south-1"
 
     # IMPORTANT: CloudFront domain
@@ -411,7 +422,7 @@ CORS_ALLOW_METHODS = [
     'PUT',
 ]
 
-CSRF_TRUSTED_ORIGINS = os.getenv("CSRF_TRUSTED_ORIGINS", "").split(",")
+# CSRF_TRUSTED_ORIGINS = os.getenv("CSRF_TRUSTED_ORIGINS", "").split(",")
 
 
 CORS_ALLOW_HEADERS = [
